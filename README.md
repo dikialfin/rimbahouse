@@ -17,7 +17,7 @@ dibangun menggunakan laravel 12
     composer install
     ```
 
-3.  Salin konfigurasi database pada .example.env ke .env
+3.  Salin seluruh isi file pada .example.env ke .env
 
 4.  Hasilkan kunci aplikasi:
 
@@ -37,6 +37,9 @@ dibangun menggunakan laravel 12
     php artisan serve
     ```
 
+## API Documentation
+http://your-server:your-port/api/documentation
+
 ## Cara menjalankan
 
 1.  Buka aplikasi Postman.
@@ -46,36 +49,3 @@ dibangun menggunakan laravel 12
 5.  Jika diperlukan, tambahkan header dan body request.
 6.  Klik tombol "Send".
 7.  Periksa respons API di bagian bawah Postman.
-
-## Endpoint
-
-### Mendapatkan Semua Pengguna
-* **Metode:** `GET`
-* **URL:** `/api/users`
-* **Deskripsi:** Mengambil daftar semua pengguna, dipaginasi 5 data per halaman.
-
-### Mendapatkan Detail Pengguna
-
-* **Metode:** `GET`
-* **URL:** `/api/users/{id_user}`
-* **Deskripsi:** Mengambil detail pengguna berdasarkan ID.
-
-### Membuat Pengguna Baru
-
-* **Metode:** `POST`
-* **URL:** `/api/users`
-* **Deskripsi:** Membuat pengguna baru.
-* **Data Request (JSON) di Body Postman:**
-
-### Memperbarui Pengguna
-
-* **Metode:** `PUT`
-* **URL:** `/api/users/{id_user}`
-* **Deskripsi:** Memperbarui data pengguna berdasarkan ID.
-* **Data Request (JSON) di Body Postman:**
-
-### Menghapus Pengguna
-
-* **Metode:** `DELETE`
-* **URL:** `/api/users/{id_user}`
-* **Deskripsi:** Menghapus pengguna berdasarkan ID.
