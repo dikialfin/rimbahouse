@@ -11,27 +11,33 @@ dibangun menggunakan laravel 12
     git clone https://github.com/dikialfin/rimbahouse.git
     ```
 
-2.  Instal dependensi Composer:
+2.  Pindah directory:
+
+    ```bash
+    cd rimbahouse/rimba-api/
+    ```
+
+3.  Instal dependensi Composer:
 
     ```bash
     composer install
     ```
 
-3.  Salin seluruh isi file pada .example.env ke .env
+4.  Buat file bernama .env pada root project, salin isi file .example.env ke file .env yang telah dibuat
 
-4.  Hasilkan kunci aplikasi:
+5.  Hasilkan kunci aplikasi:
 
     ```bash
     php artisan key:generate
     ```
 
-5.  Jalankan migrasi database:
+6.  Jalankan migrasi database:
 
     ```bash
     php artisan migrate
     ```
 
-6.  Jalankan server pengembangan:
+7.  Jalankan server pengembangan:
 
     ```bash
     php artisan serve
