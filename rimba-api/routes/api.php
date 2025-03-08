@@ -10,3 +10,4 @@ Route::post('/users', [UserController::class, "addUser"])->middleware(UserValida
 Route::put('/users/{id}', [UserController::class, "editUser"])->middleware(UserValidationUpdate::class);
 Route::delete('/users/{id}', [UserController::class, "deleteUser"]);
 Route::get('/users/{id}', [UserController::class, "detailUser"]);
+Route::get('/users', [UserController::class, "getUsers"]);

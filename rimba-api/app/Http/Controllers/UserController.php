@@ -79,7 +79,8 @@ class UserController extends Controller
         }
     }
 
-    public function deleteUser(Request $request, $id) {
+    public function deleteUser(Request $request, $id)
+    {
         try {
 
             $user = $this->userModel::find($id);
@@ -107,7 +108,6 @@ class UserController extends Controller
                 'message' => 'berhasil menghapus data',
                 'data' => []
             ], 204);
-
         } catch (Exception $exception) {
             Log::error('Terjadi kesalahan: ' . $exception->getMessage(), ['exception' => $exception]);
 
@@ -119,7 +119,8 @@ class UserController extends Controller
         }
     }
 
-    public function detailUser(Request $request, $id) {
+    public function detailUser(Request $request, $id)
+    {
         try {
 
             $user = $this->userModel::find($id);
@@ -150,7 +151,29 @@ class UserController extends Controller
                     'age' => $user->age,
                 ]
             ], 200);
+        } catch (Exception $exception) {
+            Log::error('Terjadi kesalahan: ' . $exception->getMessage(), ['exception' => $exception]);
 
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'terjadi kesalahan pada server',
+                'data' => []
+            ], 500);
+        }
+    }
+
+    public function getUsers(Request $request)
+    {
+        try {
+            $users = User::paginate(5);
+
+            Log::info('Berhasil memuat data user');
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'berhasil memuat data',
+                'data' => $users
+            ], 200);
         } catch (Exception $exception) {
             Log::error('Terjadi kesalahan: ' . $exception->getMessage(), ['exception' => $exception]);
 
