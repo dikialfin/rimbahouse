@@ -118,4 +118,47 @@ class UserController extends Controller
             ], 500);
         }
     }
+
+    public function detailUser(Request $request, $id) {
+        try {
+
+            $user = $this->userModel::find($id);
+
+            if (is_null($user)) {
+                Log::error('Terjadi kesalahan: user id tidak dapat di temukan');
+
+                return response()->json([
+                    'status' => 'failed',
+                    'message' => 'periksa kembali data yang anda inputkan',
+                    'data' => [
+                        "id" => "id not found"
+                    ],
+                ], 404);
+            }
+
+            Log::info('Berhasil memuat data user : ', [
+                'id' => $id
+            ]);
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'berhasil memuat data',
+                'data' => [
+                    'id' => $user->id,
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'age' => $user->age,
+                ]
+            ], 200);
+
+        } catch (Exception $exception) {
+            Log::error('Terjadi kesalahan: ' . $exception->getMessage(), ['exception' => $exception]);
+
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'terjadi kesalahan pada server',
+                'data' => []
+            ], 500);
+        }
+    }
 }
