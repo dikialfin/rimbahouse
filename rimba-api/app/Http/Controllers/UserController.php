@@ -7,6 +7,13 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
+/**
+ * @OA\Info(
+ *      version="1.0.0",
+ *      title="Rimba Api",
+ *      description="Rimba Api"
+ * )
+ */
 class UserController extends Controller
 {
     private $userModel;
@@ -16,6 +23,40 @@ class UserController extends Controller
         $this->userModel = new User;
     }
 
+    /**
+     * @OA\Post(
+     *      path="/api/users",
+     *      tags={"User"},
+     *      summary="Adding user",
+     *      description="Adding user",
+     *      @OA\RequestBody(
+     *      required=true,
+     *      @OA\JsonContent(
+     *          type="object",
+     *          @OA\Property(
+     *           property="name", 
+     *           type="string", 
+     *           default="Username Here"
+     *       ),
+     *          @OA\Property(
+     *           property="email", 
+     *           type="string", 
+     *           default="useremail@email.email"
+     *       ),
+     *          @OA\Property(
+     *           property="age", 
+     *           type="integer", 
+     *           default=28
+     *       )
+     *      )
+     *  ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="successful operation"
+     *       ),
+     *      @OA\Response(response=500, description="failed operation"),
+     * )
+     */
     public function addUser(Request $request)
     {
         try {
@@ -47,6 +88,49 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * @OA\Put(
+     *      path="/api/users/{id}",
+     *      tags={"User"},
+     *      summary="Update user information by id",
+     *      description="Update user information by id",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="User id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="string",
+     *          )
+     *      ),
+     *      @OA\RequestBody(
+     *      required=true,
+     *      @OA\JsonContent(
+     *          type="object",
+     *          @OA\Property(
+     *           property="name", 
+     *           type="string", 
+     *           default="Username Here"
+     *       ),
+     *          @OA\Property(
+     *           property="email", 
+     *           type="string", 
+     *           default="useremail@email.email"
+     *       ),
+     *          @OA\Property(
+     *           property="age", 
+     *           type="integer", 
+     *           default=28
+     *       )
+     *      )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful operation"
+     *       ),
+     *      @OA\Response(response=500, description="failed operation"),
+     * )
+     */
     public function editUser(Request $request, $id)
     {
         try {
@@ -79,6 +163,29 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * @OA\Delete(
+     *      path="/api/users/{id}",
+     *      tags={"User"},
+     *      summary="Delete user information by id",
+     *      description="Delete user data",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="User id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=204,
+     *          description="successful operation"
+     *       ),
+     *      @OA\Response(response=404, description="data not found"),
+     *      @OA\Response(response=500, description="failed operation"),
+     * )
+     */
     public function deleteUser(Request $request, $id)
     {
         try {
@@ -119,6 +226,29 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * @OA\Get(
+     *      path="/api/users/{id}",
+     *      tags={"User"},
+     *      summary="Get user information by id",
+     *      description="Returns user data",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="User id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful operation"
+     *       ),
+     *      @OA\Response(response=404, description="data not found"),
+     *      @OA\Response(response=500, description="failed operation"),
+     * )
+     */
     public function detailUser(Request $request, $id)
     {
         try {
@@ -162,6 +292,21 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * @OA\Get(
+     *      path="/api/users",
+     *      tags={"User"},
+     *      summary="Get list of users",
+     *      description="Returns list of users",
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful operation"
+     *       ),
+     *       @OA\Response(response=500, description="failed operation")
+     *     )
+     *
+     * Returns list of users
+     */
     public function getUsers(Request $request)
     {
         try {
